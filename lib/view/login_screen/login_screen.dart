@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scale_up_task/res/assets/app_assets.dart';
 import 'package:scale_up_task/res/colors/app_colors.dart';
 
+import '../../res/components/round_button.dart';
 import '../../viewModel/login_controller/login_controller.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -149,43 +149,12 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // Obx(
-            //   () => Container(
-            //     height: 60,
-            //     width: MediaQuery.sizeOf(context).width,
-            //     padding: EdgeInsets.symmetric(horizontal: 20),
-            //     decoration: BoxDecoration(
-            //       color: Colors.black,
-            //       border: Border.all(color: Colors.white),
-            //       borderRadius: BorderRadius.circular(8),
-            //     ),
-            //     child: TextField(
-            //       controller: loginController.passwordController,
-            //       obscureText: loginController.isPasswordHidden.value,
-            //       style: const TextStyle(color: Colors.white),
-            //       decoration: InputDecoration(
-            //         hintText: 'Password',
-            //         hintStyle: TextStyle(color: Colors.grey),
-            //         prefixIcon: Icon(Icons.lock, color: Colors.white),
-            //         suffixIcon: IconButton(
-            //           icon: Icon(
-            //             loginController.isPasswordHidden.value
-            //                 ? Icons.visibility_off
-            //                 : Icons.visibility,
-            //             color: Colors.white,
-            //           ),
-            //           onPressed: loginController.togglePasswordVisibility,
-            //         ),
-            //         filled: true,
-            //         fillColor: Colors.grey[800],
-            //         border: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(10.0),
-            //           borderSide: BorderSide.none,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
+            RoundButton(
+              title: 'Login',
+              onPress: loginController.login,
+              height: 64,
+              width: MediaQuery.sizeOf(context).width,
+            ),
           ],
         ),
       ),
