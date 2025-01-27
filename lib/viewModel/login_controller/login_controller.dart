@@ -30,6 +30,6 @@ class LoginController extends GetxController {
   }
 
   void forgotPassword() {
-    Get.toNamed('/forgot-password');
+    Get.toNamed('/forget_password');
   }
 }

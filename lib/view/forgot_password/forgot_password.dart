@@ -16,7 +16,7 @@ class ForgotPassword extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.only(right: 16, left: 16, top: 50),
+        padding: const EdgeInsets.only(right: 16,left: 16, top: 50),
         child: Form(
           key: forgetController.formKey,
           child: Column(
@@ -66,7 +66,7 @@ class ForgotPassword extends StatelessWidget {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return null;
+                            return "Please Enter email";
                           } else if (!GetUtils.isEmail(value)) {
                             return 'Please enter a valid email';
                           }

@@ -28,17 +28,10 @@ class SignUpController extends GetxController {
       print('Name: $name');
       print('Email: $email');
       print('Password: $password');
-
-      // Clear the text fields after login
       nameController.clear();
       emailController.clear();
       passwordController.clear();
-
-      // Navigate to another page
-      Get.offNamed('/home');
-    } else {
-      Get.snackbar('Error', 'Please correct the errors in the form',
-          snackPosition: SnackPosition.BOTTOM);
+      // Get.offNamed('clear');
     }
   }
 

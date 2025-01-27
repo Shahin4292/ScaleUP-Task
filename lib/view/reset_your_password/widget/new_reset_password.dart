@@ -30,11 +30,11 @@ class NewResetPassword extends StatelessWidget {
               child: TextFormField(
                 focusNode: resetPasswordController.newPasswordFocusNode,
                 controller: resetPasswordController.newPasswordController,
-                obscureText: resetPasswordController.isPasswordHidden.value,
+                obscureText: resetPasswordController.newPasswordHidden.value,
                 style: TextStyle(color: Colors.white),
                 cursorColor: Colors.grey,
                 decoration: InputDecoration(
-                  labelText: "Password",
+                  labelText: "Enter New Password",
                   labelStyle: TextStyle(
                       color: AppColor.grey,
                       fontSize: 12,
@@ -61,9 +61,9 @@ class NewResetPassword extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: resetPasswordController.togglePasswordVisibility,
+              onTap: resetPasswordController.newPasswordVisibility,
               child: Icon(
-                resetPasswordController.isPasswordHidden.value
+                resetPasswordController.newPasswordHidden.value
                     ? Icons.visibility_off
                     : Icons.visibility,
                 color: Colors.white,

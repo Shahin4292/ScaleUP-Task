@@ -38,6 +38,7 @@ class VerificationScreen extends StatelessWidget {
               children: List.generate(4, (index) {
                 return SizedBox(
                   width: 50,
+                  height: 50,
                   child: TextField(
                     controller: controller.codeControllers[index],
                     onChanged: (value) {
@@ -61,7 +62,7 @@ class VerificationScreen extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     maxLength: 1,
                     decoration: InputDecoration(
-                      counterText: "",
+                      // counterText: "",
                       filled: true,
                       fillColor: Color(0xFF222222),
                       enabledBorder: OutlineInputBorder(
@@ -77,35 +78,33 @@ class VerificationScreen extends StatelessWidget {
                 );
               }),
             ),
-            SizedBox(height: 20),
-            // Resend Text
-            Text(
-              "Resend Code in 10 Sec.",
-              style: TextStyle(
-                color: Colors.grey.shade500,
-                fontSize: 14,
+            Center(
+              child: Text(
+                "Resend Code in 10 Sec.",
+                style: TextStyle(
+                  color: AppColor.greyShade,
+                  fontSize: 14,
+                ),
               ),
             ),
-            SizedBox(height: 30),
-            // Verify Now Button
             Obx(() {
               return ElevatedButton(
                 onPressed: controller.isButtonEnabled.value
                     ? controller.verifyCode
-                    : null,
+                    : SizedBox.shrink,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: controller.isButtonEnabled.value
                       ? Colors.redAccent
-                      : Colors.grey.shade800,
+                      : Colors.redAccent,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  minimumSize: Size(double.infinity, 50),
+                  minimumSize: Size(MediaQuery.sizeOf(context).width, 64),
                 ),
                 child: Text(
                   "Verify Now",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),

@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:scale_up_task/res/colors/app_colors.dart';
 import 'package:scale_up_task/res/components/text.dart';
+import 'package:scale_up_task/view/subscription_screen/widget/account_name.dart';
+import 'package:scale_up_task/view/subscription_screen/widget/cancel_button.dart';
+import 'package:scale_up_task/view/subscription_screen/widget/card_details.dart';
+import 'package:scale_up_task/view/subscription_screen/widget/payment_method.dart';
+import 'package:scale_up_task/view/subscription_screen/widget/plan_option.dart';
+import 'package:scale_up_task/view/subscription_screen/widget/subscription_button.dart';
 
 import '../../viewModel/subscription_controller/subscription_controller.dart';
 
@@ -12,156 +19,112 @@ class SubscriptionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Dark background
+      backgroundColor: AppColor.backgroundColor, // Dark background
       body: Padding(
-        padding: const EdgeInsets.only(right: 16, left: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BoldText(
-                text: "Set up Your Payment &\nBuy Subscription",
-                size: 30,
-                color: Colors.white),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Starter Plan",
-              style: TextStyle(
+        padding: const EdgeInsets.only(left: 16, right: 16),
+        child: Form(
+          key: controller.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BoldText(
+                  text: "Set up Your Payment &\nBuy Subscription",
+                  size: 30,
+                  color: Colors.white),
+              SizedBox(
+                height: 20,
+              ),
+              ModifiedText(
+                  text: "Starter Plan",
+                  color: Colors.white,
+                  size: 16,
+                  fontWeight: FontWeight.normal),
+              SizedBox(
+                height: 10,
+              ),
+              Obx(() => Column(
+                    spacing: 20,
+                    children: [
+                      PlanOptionWidget(
+                        title: "Pay Monthly",
+                        subtitle: "\$2.0/ Month/ Member",
+                        index: 0,
+                        isSelected: controller.selectedPlan.value == 0,
+                        onTap: () => controller.selectedPlan.value = 0,
+                      ),
+                      PlanOptionWidget(
+                        title: "Pay Monthly",
+                        subtitle: "\$2.0/ Month/ Member",
+                        index: 1,
+                        isSelected: controller.selectedPlan.value == 1,
+                        onTap: () => controller.selectedPlan.value = 1,
+                      ),
+                    ],
+                  )),
+              SizedBox(
+                height: 20,
+              ),
+              ModifiedText(
+                text: "Billed To",
                 color: Colors.white,
-                fontSize: 16,
+                size: 16,
                 fontWeight: FontWeight.normal,
               ),
-            ),
-            SizedBox(height: 10,),
-            Obx(() {
-              return Column(
-                children: [
-                  buildPlanOption("Pay Monthly", "\$2.0/ Month/ Member", 0),
-                  SizedBox(height: 10),
-                  buildPlanOption("Pay Monthly", "\$2.0/ Month/ Member", 1),
-                ],
-              );
-            }),
-            // Billed To
-            Text(
-              "Billed To",
-              style: TextStyle(
-                color: Colors.grey.shade500,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+              SizedBox(
+                height: 10,
               ),
-            ),
-            TextField(
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color(0xFF222222),
-                hintText: "Account Name",
-                hintStyle: TextStyle(color: Colors.grey),
-                prefixIcon: Icon(Icons.person, color: Colors.grey),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.redAccent),
-                  borderRadius: BorderRadius.circular(12),
-                ),
+              AccountName(
+                subscriptionController: controller,
               ),
-            ),
-            // Payment Details
-            Text(
-              "Payment Details",
-              style: TextStyle(
-                color: Colors.grey.shade500,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+              SizedBox(
+                height: 20,
               ),
-            ),
-            Obx(() {
-              return Row(
+              ModifiedText(
+                text: "Payment Details",
+                color: Colors.white,
+                size: 16,
+                fontWeight: FontWeight.normal,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Obx(() => Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      PaymentMethodWidget(
+                        title: "Pay by Card",
+                        icon: Icons.credit_card,
+                        isSelected: controller.selectedPaymentMethod.value == 0,
+                        onTap: () => controller.selectedPaymentMethod.value = 0,
+                      ),
+                      PaymentMethodWidget(
+                        title: "Bank Transfer",
+                        icon: Icons.account_balance,
+                        isSelected: controller.selectedPaymentMethod.value == 1,
+                        onTap: () => controller.selectedPaymentMethod.value = 1,
+                      ),
+                    ],
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              CardDetails(
+                subscriptionController: controller,
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  buildPaymentMethod("Pay by Card", Icons.credit_card, 0),
-                  buildPaymentMethod("Bank Transfer", Icons.account_balance, 1),
+                  const CancelButton(),
+                  SubscribeButton(),
                 ],
-              );
-            }),
-            TextField(
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color(0xFF222222),
-                hintText: "1452 4865 9846 3659",
-                hintStyle: TextStyle(color: Colors.grey),
-                prefixIcon: Icon(Icons.credit_card, color: Colors.grey),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.redAccent),
-                  borderRadius: BorderRadius.circular(12),
-                ),
               ),
-            ),
-            // Buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Cancel Button
-                ElevatedButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey.shade800,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    minimumSize: Size(120, 50),
-                  ),
-                  child: Text(
-                    "Cancel",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-                // Subscribe Button
-                ElevatedButton(
-                  onPressed: () {
-                    Get.snackbar(
-                      "Subscription",
-                      "Subscription Successful!",
-                      snackPosition: SnackPosition.BOTTOM,
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    minimumSize: Size(150, 50),
-                  ),
-                  child: Text(
-                    "Subscribe",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
-
 }

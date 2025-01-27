@@ -21,7 +21,8 @@ class VerificationController extends GetxController {
   void verifyCode() {
     if (isButtonEnabled.value) {
       final code = codeControllers.map((controller) => controller.text).join();
-      Get.toNamed("");
+      codeControllers.clear();
+      Get.toNamed('/resetYourPassword_screen');
       Get.snackbar(
         "Verification Successful",
         "Code Verified: $code",

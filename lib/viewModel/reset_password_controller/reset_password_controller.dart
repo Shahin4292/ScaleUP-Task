@@ -26,7 +26,7 @@ class ResetPasswordController extends GetxController {
       print('confirmPassword: $confirmPassword');
       newPasswordController.clear();
       confirmPasswordController.clear();
-      // Get.toNamed('/sign_up_screen');
+      Get.toNamed('/subscription_screen');
     }
   }
 

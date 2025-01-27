@@ -11,7 +11,7 @@ class ForgetController extends GetxController {
       String email = emailController.text;
       print('Email: $email');
       emailController.clear();
-      // Get.toNamed('/sign_up_screen');
+      Get.toNamed('/verification_screen');
     }
   }
 
