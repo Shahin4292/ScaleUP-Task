@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/get_utils/get_utils.dart';
 
 import '../../../res/colors/app_colors.dart';
 import '../../../viewModel/login_controller/login_controller.dart';
@@ -25,8 +26,9 @@ class CustomTextField extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: TextField(
+            child: TextFormField(
               controller: loginController.emailController,
+              focusNode: loginController.emailFocusNode,
               style: TextStyle(color: Colors.white),
               cursorColor: Colors.grey,
               decoration: InputDecoration(
@@ -42,6 +44,18 @@ class CustomTextField extends StatelessWidget {
                     fontWeight: FontWeight.normal),
                 border: InputBorder.none,
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your email';
+                } else if (!GetUtils.isEmail(value)) {
+                  return 'Please enter a valid email';
+                }
+                return null;
+              },
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) {
+                FocusScope.of(context).requestFocus(loginController.passwordFocusNode);
+              },
             ),
           ),
           Icon(

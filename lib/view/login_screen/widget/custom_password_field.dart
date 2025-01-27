@@ -27,7 +27,8 @@ class CustomPasswordField extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: TextField(
+              child: TextFormField(
+                focusNode: loginController.passwordFocusNode,
                 controller: loginController.passwordController,
                 obscureText: loginController.isPasswordHidden.value,
                 style: TextStyle(color: Colors.white),
@@ -45,6 +46,15 @@ class CustomPasswordField extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                   border: InputBorder.none,
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  } else if (value.length < 6) {
+                    return 'Password must be at least 6 characters long';
+                  }
+                  return null;
+                },
+                textInputAction: TextInputAction.done,
               ),
             ),
             GestureDetector(

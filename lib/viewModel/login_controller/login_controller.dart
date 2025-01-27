@@ -5,33 +5,31 @@ class LoginController extends GetxController {
   var isPasswordHidden = true.obs;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final emailFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
+  final formKey = GlobalKey<FormState>();
 
   void togglePasswordVisibility() {
     isPasswordHidden.value = !isPasswordHidden.value;
   }
 
   void login() {
-    // Add login logic here
-    String email = emailController.text;
-    String password = passwordController.text;
-    if (email.isEmpty || password.isEmpty) {
-      // Get.snackbar('Error', 'Please fill all fields',
-      //     snackPosition: SnackPosition.BOTTOM);
+    if (formKey.currentState!.validate()) {
+      String email = emailController.text;
+      String password = passwordController.text;
+      print('Email: $email');
+      print('Password: $password');
+      emailController.clear();
+      passwordController.clear();
+      Get.toNamed('/sign_up_screen');
     }
-    // } else {
-    //   // Call your API or authentication logic here
-    //   print('Email: $email');
-    //   print('Password: $password');
-    // }
   }
 
   void navigateToSignUp() {
-    // Navigate to sign-up screen
     Get.toNamed('/signup');
   }
 
   void forgotPassword() {
-    // Navigate to forgot password screen
     Get.toNamed('/forgot-password');
   }
 }
