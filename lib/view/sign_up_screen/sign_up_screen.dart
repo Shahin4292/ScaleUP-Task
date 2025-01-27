@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:scale_up_task/res/assets/app_assets.dart';
 import 'package:scale_up_task/res/components/text.dart';
 import 'package:scale_up_task/view/sign_up_screen/widget/name_field.dart';
 import 'package:scale_up_task/view/sign_up_screen/widget/password_field.dart';
 import 'package:scale_up_task/view/sign_up_screen/widget/text_field.dart';
 
+import '../../res/components/icon_box.dart';
 import '../../viewModel/sign_up_controller/sign_up_controller.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -16,78 +18,126 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Form(
-          key: signUpController.formKey,
-          child: Column(
-            spacing: 15,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BoldText(text: "Sign Up", size: 30, color: Colors.white),
-              ModifiedText(
-                text:
-                    "Integer ultricies dolor enim id sed pulvinar sagittis in. Morbi venenatis nunc turpis morbi. Vitae ullamcorper vehicula praesent lorem.",
-                color: Colors.white,
-                size: 13,
-                fontWeight: FontWeight.normal,
-              ),
-              Column(
-                spacing: 20,
-                children: [
-                  NameFieldInput(
-                    signUpController: signUpController,
-                  ),
-                  TextFieldInput(
-                    signUpController: signUpController,
-                  ),
-                  PasswordFieldInput(
-                    signUpController: signUpController,
-                  ),
-                  Obx(
-                    () => Row(
-                      children: [
-                        Checkbox(
-                          value: signUpController.isTermsAccepted.value,
-                          onChanged: (value) =>
-                              signUpController.toggleTermsAccepted(),
-                          activeColor: Colors.red,
-                          focusColor: Colors.red,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
+          child: Form(
+            key: signUpController.formKey,
+            child: Column(
+              spacing: 20,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BoldText(text: "Sign Up", size: 30, color: Colors.white),
+                ModifiedText(
+                  text:
+                      "Integer ultricies dolor enim id sed pulvinar sagittis in. Morbi venenatis nunc turpis morbi. Vitae ullamcorper vehicula praesent lorem.",
+                  color: Colors.white,
+                  size: 13,
+                  fontWeight: FontWeight.normal,
+                ),
+                Column(
+                  spacing: 20,
+                  children: [
+                    NameFieldInput(
+                      signUpController: signUpController,
+                    ),
+                    TextFieldInput(
+                      signUpController: signUpController,
+                    ),
+                    PasswordFieldInput(
+                      signUpController: signUpController,
+                    ),
+                    Obx(
+                      () => Row(
+                        children: [
+                          Checkbox(
+                            value: signUpController.isTermsAccepted.value,
+                            onChanged: (value) =>
+                                signUpController.toggleTermsAccepted(),
+                            activeColor: Colors.red,
+                            focusColor: Colors.red,
+                          ),
+                          const Text(
+                            'I agree to the terms & conditions',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Obx(
+                      () => ElevatedButton(
+                        onPressed: signUpController.isTermsAccepted.value
+                            ? signUpController.signUp
+                            : SizedBox.shrink,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          minimumSize: Size(MediaQuery.sizeOf(context).width, 60),
                         ),
-                        const Text(
-                          'I agree to the terms & conditions',
+                        child: const Text(
+                          'Sign Up',
                           style: TextStyle(
+                              fontSize: 18,
                               color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal),
+                              fontWeight: FontWeight.bold),
                         ),
-                      ],
-                    ),
-                  ),
-                  Obx(
-                    () => ElevatedButton(
-                      onPressed: signUpController.isTermsAccepted.value
-                          ? signUpController.signUp
-                          : SizedBox.shrink,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        minimumSize: Size(MediaQuery.sizeOf(context).width, 60),
                       ),
+                    ),
+                  ],
+                ),
+                Center(
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    'Or Sign Up with',
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 20,
+                  children: [
+                    IconBox(
+                      onPress: () {},
+                      image: AppAssets.google,
+                    ),
+                    IconBox(
+                      onPress: () {},
+                      image: AppAssets.facebook,
+                    ),
+                    IconBox(
+                      onPress: () {},
+                      image: AppAssets.instagram,
+                    ),
+                  ],
+                ),
+                Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Already have an account? ',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    GestureDetector(
+                      // onTap: signUpController.navigateToLogin,
                       child: const Text(
-                        'Sign Up',
+                        'Login',
                         style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                            color: Colors.red, fontWeight: FontWeight.bold),
                       ),
                     ),
-                  ),
-                ],
-              )
-            ],
+                  ],
+                ),
+                // SizedBox(
+                //   height: 10,
+                // ),
+              ],
+            ),
           ),
         ),
       ),
