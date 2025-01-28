@@ -19,6 +19,7 @@ class SubscribeButton extends StatelessWidget {
               "Subscription Successful!",
               snackPosition: SnackPosition.BOTTOM,
             );
+            Get.toNamed('/movie_dashboard_screen');
           }
         },
         style: ElevatedButton.styleFrom(
@@ -26,7 +27,7 @@ class SubscribeButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
-          minimumSize: Size(180, 64),
+          minimumSize: Size(180, 60),
         ),
         child: ModifiedText(
             text: "Subscribe",

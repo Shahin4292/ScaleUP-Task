@@ -17,7 +17,7 @@ class CancelButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
-        minimumSize: Size(150, 64),
+        minimumSize: Size(150, 60),
       ),
       child: ModifiedText(
           text: "Cancel",

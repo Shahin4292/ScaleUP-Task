@@ -22,7 +22,7 @@ class ButtonCategory extends StatelessWidget {
           padding: EdgeInsets.only(left: 14, right: 14,top: 8, bottom: 8),
           decoration: BoxDecoration(
             color: isSelected ? Colors.red : Color(0xFF221821),
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(6),
           ),
           child: Center(
             child: Text(

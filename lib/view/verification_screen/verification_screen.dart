@@ -62,7 +62,7 @@ class VerificationScreen extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     maxLength: 1,
                     decoration: InputDecoration(
-                      // counterText: "",
+                      counterText: "",
                       filled: true,
                       fillColor: Color(0xFF222222),
                       enabledBorder: OutlineInputBorder(

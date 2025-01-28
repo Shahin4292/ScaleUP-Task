@@ -112,7 +112,7 @@ class SubscriptionScreen extends StatelessWidget {
                 subscriptionController: controller,
               ),
               SizedBox(
-                height: 12,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
