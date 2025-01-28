@@ -12,5 +12,6 @@ class RouteName {
   static const String subscriptionScreen = '/subscription_screen';
 
   static const String movieDashboardScreen = '/movie_dashboard_screen';
+
   static const String bottomBar = '/bottom_bar';
 }

@@ -57,6 +57,7 @@ class _BottomBarState extends State<BottomBar> {
         children: _pages,
       ),
       bottomNavigationBar: Container(
+        width: MediaQuery.sizeOf(context).width,
         height: 62,
         decoration: BoxDecoration(
           color: Color(0xFF1D1F24), // Dark background

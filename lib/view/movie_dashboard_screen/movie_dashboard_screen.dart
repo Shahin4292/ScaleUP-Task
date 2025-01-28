@@ -23,6 +23,7 @@ class MovieDashboardScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColor.backgroundColor,
         elevation: 0,
         title: Row(

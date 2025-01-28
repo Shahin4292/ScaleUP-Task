@@ -20,108 +20,110 @@ class SubscriptionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor, // Dark background
-      body: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16),
-        child: Form(
-          key: controller.formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BoldText(
-                  text: "Set up Your Payment &\nBuy Subscription",
-                  size: 30,
-                  color: Colors.white),
-              SizedBox(
-                height: 20,
-              ),
-              ModifiedText(
-                  text: "Starter Plan",
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16),
+          child: Form(
+            key: controller.formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BoldText(
+                    text: "Set up Your Payment &\nBuy Subscription",
+                    size: 30,
+                    color: Colors.white),
+                SizedBox(
+                  height: 20,
+                ),
+                ModifiedText(
+                    text: "Starter Plan",
+                    color: Colors.white,
+                    size: 16,
+                    fontWeight: FontWeight.normal),
+                SizedBox(
+                  height: 10,
+                ),
+                Obx(() => Column(
+                      spacing: 20,
+                      children: [
+                        PlanOptionWidget(
+                          title: "Pay Monthly",
+                          subtitle: "\$2.0/ Month/ Member",
+                          index: 0,
+                          isSelected: controller.selectedPlan.value == 0,
+                          onTap: () => controller.selectedPlan.value = 0,
+                        ),
+                        PlanOptionWidget(
+                          title: "Pay Monthly",
+                          subtitle: "\$2.0/ Month/ Member",
+                          index: 1,
+                          isSelected: controller.selectedPlan.value == 1,
+                          onTap: () => controller.selectedPlan.value = 1,
+                        ),
+                      ],
+                    )),
+                SizedBox(
+                  height: 20,
+                ),
+                ModifiedText(
+                  text: "Billed To",
                   color: Colors.white,
                   size: 16,
-                  fontWeight: FontWeight.normal),
-              SizedBox(
-                height: 10,
-              ),
-              Obx(() => Column(
-                    spacing: 20,
-                    children: [
-                      PlanOptionWidget(
-                        title: "Pay Monthly",
-                        subtitle: "\$2.0/ Month/ Member",
-                        index: 0,
-                        isSelected: controller.selectedPlan.value == 0,
-                        onTap: () => controller.selectedPlan.value = 0,
-                      ),
-                      PlanOptionWidget(
-                        title: "Pay Monthly",
-                        subtitle: "\$2.0/ Month/ Member",
-                        index: 1,
-                        isSelected: controller.selectedPlan.value == 1,
-                        onTap: () => controller.selectedPlan.value = 1,
-                      ),
-                    ],
-                  )),
-              SizedBox(
-                height: 20,
-              ),
-              ModifiedText(
-                text: "Billed To",
-                color: Colors.white,
-                size: 16,
-                fontWeight: FontWeight.normal,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              AccountName(
-                subscriptionController: controller,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              ModifiedText(
-                text: "Payment Details",
-                color: Colors.white,
-                size: 16,
-                fontWeight: FontWeight.normal,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Obx(() => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      PaymentMethodWidget(
-                        title: "Pay by Card",
-                        icon: Icons.credit_card,
-                        isSelected: controller.selectedPaymentMethod.value == 0,
-                        onTap: () => controller.selectedPaymentMethod.value = 0,
-                      ),
-                      PaymentMethodWidget(
-                        title: "Bank Transfer",
-                        icon: Icons.account_balance,
-                        isSelected: controller.selectedPaymentMethod.value == 1,
-                        onTap: () => controller.selectedPaymentMethod.value = 1,
-                      ),
-                    ],
-                  )),
-              SizedBox(
-                height: 10,
-              ),
-              CardDetails(
-                subscriptionController: controller,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const CancelButton(),
-                  SubscribeButton(),
-                ],
-              ),
-            ],
+                  fontWeight: FontWeight.normal,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                AccountName(
+                  subscriptionController: controller,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ModifiedText(
+                  text: "Payment Details",
+                  color: Colors.white,
+                  size: 16,
+                  fontWeight: FontWeight.normal,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Obx(() => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        PaymentMethodWidget(
+                          title: "Pay by Card",
+                          icon: Icons.credit_card,
+                          isSelected: controller.selectedPaymentMethod.value == 0,
+                          onTap: () => controller.selectedPaymentMethod.value = 0,
+                        ),
+                        PaymentMethodWidget(
+                          title: "Bank Transfer",
+                          icon: Icons.account_balance,
+                          isSelected: controller.selectedPaymentMethod.value == 1,
+                          onTap: () => controller.selectedPaymentMethod.value = 1,
+                        ),
+                      ],
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
+                CardDetails(
+                  subscriptionController: controller,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const CancelButton(),
+                    SubscribeButton(),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

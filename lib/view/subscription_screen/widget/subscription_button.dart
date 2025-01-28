@@ -19,7 +19,7 @@ class SubscribeButton extends StatelessWidget {
               "Subscription Successful!",
               snackPosition: SnackPosition.BOTTOM,
             );
-            Get.toNamed('/movie_dashboard_screen');
+            Get.toNamed('/bottom_bar');
           }
         },
         style: ElevatedButton.styleFrom(
