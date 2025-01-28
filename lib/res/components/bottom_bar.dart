@@ -61,7 +61,7 @@ class _BottomBarState extends State<BottomBar> {
         height: 62,
         decoration: BoxDecoration(
           color: Color(0xFF1D1F24), // Dark background
-          borderRadius: BorderRadius.circular(40), // Rounded corners
+          borderRadius: BorderRadius.circular(100), // Rounded corners
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

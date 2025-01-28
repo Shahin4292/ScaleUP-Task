@@ -85,9 +85,7 @@ class LoginScreen extends StatelessWidget {
                         size: 14,
                         fontWeight: FontWeight.normal),
                     GestureDetector(
-                      onTap: () {
-                        Get.to(SignUpScreen());
-                      },
+                      onTap: loginController.navigateToSignUp,
                       child: ModifiedText(
                           text: 'Sign Up',
                           color: Colors.red,

@@ -126,9 +126,7 @@ class SignUpScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Get.to(LoginScreen());
-                      },
+                      onTap: signUpController.navigateToLogin,
                       child: const Text(
                         'Login',
                         style: TextStyle(

@@ -34,4 +34,11 @@ class SignUpController extends GetxController {
       // Get.offNamed('clear');
     }
   }
+
+  void navigateToLogin() {
+    nameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    Get.toNamed('/');
+  }
 }
