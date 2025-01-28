@@ -31,7 +31,7 @@ class SignUpController extends GetxController {
       nameController.clear();
       emailController.clear();
       passwordController.clear();
-      // Get.offNamed('clear');
+      Get.offNamed('/bottom_bar');
     }
   }
 
