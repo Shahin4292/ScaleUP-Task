@@ -35,7 +35,7 @@ class MovieRepository {
     return [
       Movies(name: 'Double Love', imageUrl: AppAssets.double),
       Movies(name: 'Sunita', imageUrl: AppAssets.sunita),
-      Movies(name: 'Pokemon: detective', imageUrl: AppAssets.pokemon),
+      Movies(name: 'Pokemon', imageUrl: AppAssets.pokemon),
     ];
   }
 }

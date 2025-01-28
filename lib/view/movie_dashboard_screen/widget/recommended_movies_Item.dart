@@ -18,7 +18,10 @@ class RecommendedMoviesItem extends StatelessWidget {
               image: DecorationImage(
                   image: NetworkImage(movies.imageUrl), fit: BoxFit.cover)),
         ),
-        Text(movies.name,style: TextStyle(color: Colors.white),),
+        Text(
+          movies.name,
+          style: TextStyle(color: Colors.white, fontSize: 14),
+        ),
       ],
     );
   }
