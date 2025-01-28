@@ -8,6 +8,7 @@ import 'package:scale_up_task/view/sign_up_screen/widget/text_field.dart';
 
 import '../../res/components/icon_box.dart';
 import '../../viewModel/sign_up_controller/sign_up_controller.dart';
+import '../login_screen/login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   final SignUpController signUpController = Get.put(SignUpController());
@@ -20,11 +21,11 @@ class SignUpScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
+          padding: const EdgeInsets.only(right: 20, left: 20, bottom: 15),
           child: Form(
             key: signUpController.formKey,
             child: Column(
-              spacing: 20,
+              spacing: 18,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BoldText(text: "Sign Up", size: 30, color: Colors.white),
@@ -36,7 +37,7 @@ class SignUpScreen extends StatelessWidget {
                   fontWeight: FontWeight.normal,
                 ),
                 Column(
-                  spacing: 20,
+                  spacing: 18,
                   children: [
                     NameFieldInput(
                       signUpController: signUpController,
@@ -77,7 +78,8 @@ class SignUpScreen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          minimumSize: Size(MediaQuery.sizeOf(context).width, 60),
+                          minimumSize:
+                              Size(MediaQuery.sizeOf(context).width, 60),
                         ),
                         child: const Text(
                           'Sign Up',
@@ -124,7 +126,9 @@ class SignUpScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     GestureDetector(
-                      // onTap: signUpController.navigateToLogin,
+                      onTap: () {
+                        Get.to(LoginScreen());
+                      },
                       child: const Text(
                         'Login',
                         style: TextStyle(
@@ -133,9 +137,6 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                // SizedBox(
-                //   height: 10,
-                // ),
               ],
             ),
           ),

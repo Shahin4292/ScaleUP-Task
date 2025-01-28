@@ -1,39 +1,41 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+
 import 'package:get/get.dart';
 
 class VerificationController extends GetxController {
-  List<TextEditingController> codeControllers =
-      List.generate(4, (index) => TextEditingController());
-  var isButtonEnabled = false.obs;
+  var otpCode = "".obs;
+  var resendTime = 10.obs;
+  var errorMessage = "".obs;
 
-  void validateInput() {
-    isButtonEnabled.value =
-        codeControllers.every((controller) => controller.text.isNotEmpty);
+  @override
+  void onInit() {
+    startTimer();
+    super.onInit();
   }
 
-  void clearFields() {
-    for (var controller in codeControllers) {
-      controller.clear();
-    }
-    validateInput();
+  void startTimer() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (resendTime.value > 0) {
+        resendTime.value--;
+      } else {
+        timer.cancel();
+      }
+    });
   }
 
-  void verifyCode() {
-    if (isButtonEnabled.value) {
-      final code = codeControllers.map((controller) => controller.text).join();
-      codeControllers.clear();
+  void resetTimer() {
+    resendTime.value = 10;
+    startTimer();
+  }
+
+  void verifyOTP() {
+    if (otpCode.value.length == 4) {
+      errorMessage.value = "";
+      Get.snackbar("Success", "OTP Verified Successfully!",
+          snackPosition: SnackPosition.BOTTOM);
       Get.toNamed('/resetYourPassword_screen');
-      Get.snackbar(
-        "Verification Successful",
-        "Code Verified: $code",
-        snackPosition: SnackPosition.TOP,
-      );
     } else {
-      Get.snackbar(
-        "Error",
-        "Please fill all fields.",
-        snackPosition: SnackPosition.TOP,
-      );
+      errorMessage.value = "Please enter a valid 4-digit OTP";
     }
   }
 }

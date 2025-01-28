@@ -14,15 +14,4 @@ class ForgetController extends GetxController {
       Get.toNamed('/verification_screen');
     }
   }
-
-
-  void navigateToSignUp() {
-    emailController.clear();
-    Get.toNamed('/signup');
-  }
-
-  void forgotPassword() {
-    emailController.clear();
-    Get.toNamed('/forgot-password');
-  }
 }

@@ -29,12 +29,4 @@ class ResetPasswordController extends GetxController {
       Get.toNamed('/subscription_screen');
     }
   }
-
-  void navigateToSignUp() {
-    Get.toNamed('/signup');
-  }
-
-  void forgotPassword() {
-    Get.toNamed('/forget_password');
-  }
 }

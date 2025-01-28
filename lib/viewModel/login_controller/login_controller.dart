@@ -24,11 +24,6 @@ class LoginController extends GetxController {
       Get.toNamed('/bottom_bar');
     }
   }
-
-  void navigateToSignUp() {
-    Get.toNamed('/signup');
-  }
-
   void forgotPassword() {
     Get.toNamed('/forget_password');
   }

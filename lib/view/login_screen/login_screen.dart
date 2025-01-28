@@ -8,6 +8,7 @@ import 'package:scale_up_task/view/login_screen/widget/custom_text_field.dart';
 
 import '../../res/components/round_button.dart';
 import '../../viewModel/login_controller/login_controller.dart';
+import '../sign_up_screen/sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
@@ -84,7 +85,9 @@ class LoginScreen extends StatelessWidget {
                         size: 14,
                         fontWeight: FontWeight.normal),
                     GestureDetector(
-                      // onTap: loginController.navigateToSignUp,
+                      onTap: () {
+                        Get.to(SignUpScreen());
+                      },
                       child: ModifiedText(
                           text: 'Sign Up',
                           color: Colors.red,
