@@ -8,6 +8,8 @@ import 'package:scale_up_task/view/sign_up_screen/sign_up_screen.dart';
 import 'package:scale_up_task/view/subscription_screen/subscription_screen.dart';
 import 'package:scale_up_task/view/verification_screen/verification_screen.dart';
 
+import '../components/bottom_bar.dart';
+
 class AppRoutes {
   static appRoutes() => [
         GetPage(
@@ -49,6 +51,12 @@ class AppRoutes {
         GetPage(
           name: RouteName.movieDashboardScreen,
           page: () => MovieDashboardScreen(),
+          transitionDuration: const Duration(milliseconds: 250),
+          transition: Transition.leftToRightWithFade,
+        ),
+        GetPage(
+          name: RouteName.bottomBar,
+          page: () => BottomBar(),
           transitionDuration: const Duration(milliseconds: 250),
           transition: Transition.leftToRightWithFade,
         ),

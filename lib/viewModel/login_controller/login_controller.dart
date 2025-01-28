@@ -21,7 +21,7 @@ class LoginController extends GetxController {
       print('Password: $password');
       emailController.clear();
       passwordController.clear();
-      Get.toNamed('/sign_up_screen');
+      Get.toNamed('/bottom_bar');
     }
   }
 

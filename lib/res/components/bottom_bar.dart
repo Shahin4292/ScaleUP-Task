@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:scale_up_task/Res/assets/app_assets.dart';
 import 'package:scale_up_task/Res/colors/app_colors.dart';
 
 import '../../view/movie_dashboard_screen/movie_dashboard_screen.dart';
@@ -63,10 +65,10 @@ class _BottomBarState extends State<BottomBar> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildNavItem(Icons.home, Icons.home_outlined, 0),
-            _buildNavItem(Icons.tv, Icons.tv_outlined, 1),
-            _buildNavItem(Icons.download, Icons.download_outlined, 2),
-            _buildNavItem(Icons.person, Icons.person_outline, 3),
+            _buildNavItem(AppAssets.homeFilled, AppAssets.home, 0),
+            _buildNavItem(AppAssets.monitorFilled, AppAssets.monitor, 1),
+            _buildNavItem(AppAssets.downloadFiled, AppAssets.download, 2),
+            _buildNavItem(AppAssets.personFilled, AppAssets.person, 3),
           ],
         ),
       ),
@@ -74,14 +76,13 @@ class _BottomBarState extends State<BottomBar> {
   }
 
   Widget _buildNavItem(
-      IconData selectedIcon, IconData unselectedIcon, int index) {
+      String selectedImage, String unselectedImage, int index) {
     bool isSelected = currentIndex == index;
     return GestureDetector(
       onTap: () => onItemTapped(index),
-      child: Icon(
-        isSelected ? selectedIcon : unselectedIcon,
+      child: SvgPicture.asset(
+        isSelected ? selectedImage : unselectedImage,
         color: isSelected ? Colors.red : Colors.grey,
-        size: 25,
       ),
     );
   }
